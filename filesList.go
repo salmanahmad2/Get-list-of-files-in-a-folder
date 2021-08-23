@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/fs"
 	"io/ioutil"
+	"os"
 )
 
 func files(directory []fs.FileInfo) {
@@ -15,12 +16,13 @@ func files(directory []fs.FileInfo) {
 }
 
 func main() {
+	file, err := ioutil.ReadDir(os.Args[1])
 
-	//pass the path of the folder as an argument to the function
-	directory, err := ioutil.ReadDir("C:/Users/Awan/Documents/Practice_golang")
+	//check for any error
 	if err != nil {
 		fmt.Println(err)
 	}
-	files(directory)
-}
 
+	//pass the path of the folder as an argument to the function
+	files(file)
+}
